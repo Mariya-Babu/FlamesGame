@@ -1,3 +1,24 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const name1Input = document.getElementById("name1");
+    const name2Input = document.getElementById("name2");
+
+    // Event listener for pressing Enter key in both input fields
+    name1Input.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            showLoading();
+        }
+    });
+
+    name2Input.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            showLoading();
+        }
+    });
+});
+
+
+
+
 function showLoading() {
     // Hide the result initially
     document.getElementById("result").textContent = "";
@@ -16,7 +37,13 @@ function calculateFLAMES() {
     const name2 = document.getElementById("name2").value.toLowerCase().replace(/[^a-zA-Z]/g, '');
 
     if (name1 === "" || name2 === "") {
-        alert("Please enter both names.");
+        // alert("Please enter both names.");
+        // Hide the loading spinner
+        document.getElementById("loading").style.display = "none";
+
+        // Show the result after 3 seconds
+        document.getElementById("result").textContent = "Please enter both names.";
+        document.querySelector(".result").style.display = "block";
         return;
     }
 
@@ -34,10 +61,10 @@ function calculateFLAMES() {
 
 function getRemainingCount(name1, name2) {
     let copyname1 = name1;
-    for(let ch of copyname1){
-        if(name2.includes(ch)){
-            name1 = name1.replace(ch,"");
-            name2 = name2.replace(ch,"");
+    for (let ch of copyname1) {
+        if (name2.includes(ch)) {
+            name1 = name1.replace(ch, "");
+            name2 = name2.replace(ch, "");
         }
     }
 
